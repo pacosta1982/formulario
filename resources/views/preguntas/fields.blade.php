@@ -6,8 +6,19 @@
 
 <!-- Pregunta Cat Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('pregunta_cat_id', 'Pregunta Cat Id:') !!}
-    {!! Form::number('pregunta_cat_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('pregunta_cat_id', 'Categoria:') !!}
+    <select class="form-control required" name="pregunta_cat_id" id="pregunta_cat_id">
+        <option value="" >Seleccione una opción</option>
+        @foreach($categorias as $cat)
+
+        <option value="{{$cat->id}}"
+          @if ($preguntaid == $cat->id)
+            selected="selected"
+          @endif
+            >{{$cat->name}} </option>
+        @endforeach
+    </select>
+
 </div>
 
 <!-- Submit Field -->

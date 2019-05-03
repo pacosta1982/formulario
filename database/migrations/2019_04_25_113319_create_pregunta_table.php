@@ -19,6 +19,7 @@ class CreatePreguntaTable extends Migration
             $table->integer('pregunta_cat_id')->unsigned();
             $table->foreign('pregunta_cat_id')->references('id')->on('pregunta_cat');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

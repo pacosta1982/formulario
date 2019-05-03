@@ -21,6 +21,7 @@ class CreatePersonaInstitucionTable extends Migration
             $table->integer('persona_id')->unsigned();
             $table->foreign('persona_id')->references('id')->on('persona');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

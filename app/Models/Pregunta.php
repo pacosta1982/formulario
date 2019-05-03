@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @version April 25, 2019, 11:39 am UTC
  *
  * @property \App\Models\PreguntaCat preguntaCat
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
+ * @property \Illuminate\Database\Eloquent\Collection
+ * @property \Illuminate\Database\Eloquent\Collection
+ * @property \Illuminate\Database\Eloquent\Collection
  * @property string name
  * @property integer pregunta_cat_id
  */
@@ -22,7 +22,7 @@ class Pregunta extends Model
     use SoftDeletes;
 
     public $table = 'pregunta';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -61,6 +61,7 @@ class Pregunta extends Model
      **/
     public function preguntaCat()
     {
-        return $this->belongsTo(\App\Models\PreguntaCat::class, 'pregunta_cat_id');
+        return $this->belongsTo(\App\Models\Pregunta_Cat::class, 'pregunta_cat_id');
     }
+
 }

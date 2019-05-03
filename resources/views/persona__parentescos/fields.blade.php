@@ -12,8 +12,8 @@
 
 <!-- Personas Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('personas_id', 'Personas Id:') !!}
-    {!! Form::number('personas_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('persona_id', 'Personas Id:') !!}
+    {!! Form::number('persona_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
