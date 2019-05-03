@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @version April 24, 2019, 7:05 pm UTC
  *
  * @property \App\Models\Parentesco parentesco
- * @property \Illuminate\Database\Eloquent\Collection 
+ * @property \Illuminate\Database\Eloquent\Collection
  * @property integer cantidad
  * @property integer parentesco_id
  * @property integer personas_id
@@ -21,7 +21,7 @@ class Persona_Parentesco extends Model
     use SoftDeletes;
 
     public $table = 'persona_parentesco';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -32,7 +32,7 @@ class Persona_Parentesco extends Model
     public $fillable = [
         'cantidad',
         'parentesco_id',
-        'personas_id'
+        'persona_id'
     ];
 
     /**
@@ -44,7 +44,7 @@ class Persona_Parentesco extends Model
         'id' => 'integer',
         'cantidad' => 'integer',
         'parentesco_id' => 'integer',
-        'personas_id' => 'integer'
+        'persona_id' => 'integer'
     ];
 
     /**
@@ -55,7 +55,7 @@ class Persona_Parentesco extends Model
     public static $rules = [
         'cantidad' => 'required',
         'parentesco_id' => 'required',
-        'personas_id' => 'required'
+        'persona_id' => 'required'
     ];
 
     /**
@@ -64,5 +64,10 @@ class Persona_Parentesco extends Model
     public function parentesco()
     {
         return $this->belongsTo(\App\Models\Parentesco::class, 'parentesco_id');
+    }
+
+    public function persona()
+    {
+        return $this->belongsTo(\App\Models\Persona::class, 'personas_id');
     }
 }

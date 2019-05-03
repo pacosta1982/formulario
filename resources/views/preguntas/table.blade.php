@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>Nombre</th>
-        <th>Pregunta Cat Id</th>
+        <th>Categoria</th>
             <th colspan="3">Acción</th>
         </tr>
     </thead>
@@ -10,7 +10,7 @@
     @foreach($preguntas as $pregunta)
         <tr>
             <td>{!! $pregunta->name !!}</td>
-            <td>{!! $pregunta->pregunta_cat_id !!}</td>
+            <td>{!! $pregunta->pregunta_cat_id?$pregunta->preguntaCat->name:"" !!}</td>
             <td>
                 {!! Form::open(['route' => ['preguntas.destroy', $pregunta->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

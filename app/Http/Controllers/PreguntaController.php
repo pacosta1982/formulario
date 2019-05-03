@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePreguntaRequest;
 use App\Repositories\PreguntaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\Pregunta_Cat;
 use Flash;
 use Response;
 
@@ -42,7 +43,9 @@ class PreguntaController extends AppBaseController
      */
     public function create()
     {
-        return view('preguntas.create');
+        $categorias = Pregunta_Cat::all();
+        $preguntaid='';
+        return view('preguntas.create',compact('categorias','preguntaid'));
     }
 
     /**
@@ -99,8 +102,9 @@ class PreguntaController extends AppBaseController
 
             return redirect(route('preguntas.index'));
         }
-
-        return view('preguntas.edit')->with('pregunta', $pregunta);
+        $categorias = Pregunta_Cat::all();
+        $preguntaid = $pregunta->pregunta_cat_id;
+        return view('preguntas.edit',compact('pregunta','categorias','preguntaid'));
     }
 
     /**
