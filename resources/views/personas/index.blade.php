@@ -2,9 +2,11 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Personas</h1>
+        <h1 class="pull-left">Registro de Inscripción</h1>
         <h1 class="pull-right">
+            @if($personas->count() >= 2)
            <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('personas.create') !!}">Agregar Nuevo</a>
+            @endif
         </h1>
     </section>
     <div class="content">
@@ -19,7 +21,7 @@
             </div>
         </div>
         <div class="text-center">
-        
+
         </div>
     </div>
 @endsection

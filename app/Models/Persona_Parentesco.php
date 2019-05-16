@@ -68,6 +68,6 @@ class Persona_Parentesco extends Model
 
     public function persona()
     {
-        return $this->belongsTo(\App\Models\Persona::class, 'personas_id');
+        return $this->belongsTo(\App\Models\Persona::class, 'persona_id');
     }
 }

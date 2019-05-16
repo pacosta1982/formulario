@@ -7,6 +7,8 @@ use App\Http\Requests\UpdatePersonaRequest;
 use App\Repositories\PersonaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\ImageGallery;
+use App\Models\Persona_Parentesco;
 use Flash;
 use Response;
 
@@ -30,9 +32,9 @@ class PersonaController extends AppBaseController
     public function index(Request $request)
     {
         $personas = $this->personaRepository->all();
-
-        return view('personas.index')
-            ->with('personas', $personas);
+        //$images = ImageGallery::get();
+        return view('personas.index',compact('personas'));
+            //->with('personas', $personas);
     }
 
     /**
@@ -43,6 +45,13 @@ class PersonaController extends AppBaseController
     public function create()
     {
         return view('personas.create');
+    }
+
+
+    public function createmiembro($id)
+    {
+        $postulante_id=$id;
+        return view('personas.createmiembro',compact('postulante_id'));
     }
 
     /**
@@ -63,6 +72,17 @@ class PersonaController extends AppBaseController
         return redirect(route('personas.index'));
     }
 
+    public function storemiembro(CreatePersonaRequest $request)
+    {
+        $input = $request->all();
+
+        //$persona = $this->personaRepository->create($input);
+
+        Flash::success('Miembro agregado correctamente.');
+
+        return redirect(route('personas.show'));
+    }
+
     /**
      * Display the specified Persona.
      *
@@ -79,8 +99,10 @@ class PersonaController extends AppBaseController
 
             return redirect(route('personas.index'));
         }
+        $images = ImageGallery::get();
+        $personas = Persona_Parentesco::all();
 
-        return view('personas.show')->with('persona', $persona);
+        return view('personas.show',compact('persona','images','personas'));//->with('persona', $persona);
     }
 
     /**

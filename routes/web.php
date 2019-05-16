@@ -14,6 +14,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+//Fotos
+Route::get('image-gallery', 'ImageGalleryController@index');
+Route::post('image-gallery', 'ImageGalleryController@upload');
+Route::delete('image-gallery/{id}', 'ImageGalleryController@destroy');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -34,6 +40,8 @@ Route::resource('parentescos', 'ParentescoController');
 Route::resource('discapacidads', 'DiscapacidadController');
 
 Route::resource('personas', 'PersonaController');
+Route::get('personas/{id}/create', 'PersonaController@createmiembro');
+Route::get('personas/{id}/create', 'PersonaController@createmiembro');
 
 Route::resource('personaDiscapacidads', 'Persona_DiscapacidadController');
 

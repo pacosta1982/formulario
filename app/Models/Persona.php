@@ -29,7 +29,7 @@ class Persona extends Model
     use SoftDeletes;
 
     public $table = 'persona';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -96,5 +96,5 @@ class Persona extends Model
         'discapacidad' => 'required'
     ];
 
-    
+
 }

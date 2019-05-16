@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Registro de Postulante
+            Agregar Miembro
         </h1>
     </section>
     <div class="content">
