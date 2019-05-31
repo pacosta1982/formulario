@@ -6,7 +6,7 @@
         <th>Parentezco</th>
         <th>Sexo</th>
         {{-- <th>Fecha Nac</th>--}}
-        <th>Email</th>
+        <th>Escolaridad</th>
         <th>Celular</th>
         {{-- <th>Domicilio Actual</th>
         <th>Departamento</th>
@@ -26,7 +26,7 @@
             <td>{!! $persona->persona_id?$persona->persona->sexo:"" !!}</td>
 
           {{--  <td>{!! $persona->fecha_nac !!}</td>--}}
-            <td>{!! $persona->persona_id?$persona->persona->email:"" !!}</td>
+            <td>{!! $persona->parentesco_id?$persona->parentesco->id:"" !!}</td>
             <td>{!! $persona->persona_id?$persona->persona->celular:"" !!}</td>
             {{--<td>{!! $persona->domicilio_actual !!}</td>
             <td>{!! $persona->departamento !!}</td>
@@ -35,7 +35,7 @@
             <td>{!! $persona->ingreso !!}</td>
             <td>{!! $persona->discapacidad !!}</td>--}}
             <td>
-            @if(!$persona->parentesco_id == 1)
+            @if(($persona->parentesco_id?$persona->parentesco->id:"") != 1)
                 {!! Form::open(['route' => ['personas.destroy', $persona->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     <a href="{!! route('personas.show', [$persona->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>

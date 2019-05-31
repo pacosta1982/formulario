@@ -3,7 +3,7 @@
           <li class="active"><a href="#tab_1" data-toggle="tab">Grupo Familiar</a></li>
           <li><a href="#tab_2" data-toggle="tab">Cuestionario</a></li>
           <li><a href="#tab_3" data-toggle="tab">Adjuntos</a></li>
-          <li class="pull-right"><a href="{!! action('PersonaController@createmiembro', ['id'=>$persona->id] ) !!}" class="text-muted" ><i class="fa fa-lg fa-plus-circle text-success"></i></a></li>
+          <li class="pull-right"><a href="{!! action('PersonaController@createmiembro', ['id'=>$persona->id] ) !!}" class="btn btn-block btn-success" ><i class="fa fa-lg fa-plus-circle text-success"></i> Agregar Miembro</a></li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="tab_1">

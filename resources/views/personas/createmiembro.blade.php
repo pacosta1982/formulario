@@ -12,8 +12,8 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'personas.store']) !!}
-
+                    {!! Form::open(['url' => '/miembros']) !!}
+                        <input type="hidden" name="id" value="{{$postulante_id}}">
                         @include('personas.fields')
 
                     {!! Form::close() !!}

@@ -33,6 +33,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/mail', 'MailController@basic_email');
+
 Route::resource('userDemos', 'UserDemoController');
 
 Route::resource('parentescos', 'ParentescoController');
@@ -41,7 +43,7 @@ Route::resource('discapacidads', 'DiscapacidadController');
 
 Route::resource('personas', 'PersonaController');
 Route::get('personas/{id}/create', 'PersonaController@createmiembro');
-Route::get('personas/{id}/create', 'PersonaController@createmiembro');
+Route::post('miembros/', 'PersonaController@storemiembro');
 
 Route::resource('personaDiscapacidads', 'Persona_DiscapacidadController');
 

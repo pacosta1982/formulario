@@ -8,8 +8,13 @@ use App\Repositories\PersonaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use App\Models\ImageGallery;
+use App\Models\Persona;
+use App\Models\Parentesco;
 use App\Models\Persona_Parentesco;
+use App\Models\Persona_Institucion;
+use App\Models\Institucion_Cat;
 use Flash;
+use Auth;
 use Response;
 
 class PersonaController extends AppBaseController
@@ -31,7 +36,8 @@ class PersonaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $personas = $this->personaRepository->all();
+        $id = Auth::user()->id;
+        $personas = Persona::where('id',$id)->get();
         //$images = ImageGallery::get();
         return view('personas.index',compact('personas'));
             //->with('personas', $personas);
@@ -51,7 +57,9 @@ class PersonaController extends AppBaseController
     public function createmiembro($id)
     {
         $postulante_id=$id;
-        return view('personas.createmiembro',compact('postulante_id'));
+        $parentesco = Parentesco::all();
+        $escolaridad = Institucion_Cat::all();
+        return view('personas.createmiembro',compact('postulante_id','parentesco','escolaridad'));
     }
 
     /**
@@ -76,11 +84,29 @@ class PersonaController extends AppBaseController
     {
         $input = $request->all();
 
-        //$persona = $this->personaRepository->create($input);
+        $persona = $this->personaRepository->find($request->id);
+        $miembro = $this->personaRepository->create($input);
+
+        $addmiembro = new Persona_Parentesco();
+        $addmiembro->cantidad=0;
+        $addmiembro->parentesco_id=$request->parentesco_id;
+        $addmiembro->persona_id=$miembro->id;
+        $addmiembro->postulante_id=$id = Auth::user()->id;
+        $addmiembro->save();
+
+        $addescolaridad = new Persona_Institucion();
+        $addescolaridad->cantidad=0;
+        $addescolaridad->institucion_id=$request->institucion_id;
+        $addescolaridad->persona_id=$miembro->id;
+        $addescolaridad->save();
+        //var_dump($miembro->id);
 
         Flash::success('Miembro agregado correctamente.');
 
-        return redirect(route('personas.show'));
+        //return redirect(route('personas.show'));
+        $images = ImageGallery::get();
+        $personas = Persona_Parentesco::all();
+        return view('personas.show',compact('persona','images','personas'));
     }
 
     /**

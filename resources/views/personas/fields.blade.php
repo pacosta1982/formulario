@@ -84,7 +84,33 @@
     {!! Form::label('discapacidad', 'Discapacidad:') !!}
     {!! Form::text('discapacidad', null, ['class' => 'form-control']) !!}
 </div>
+@if(isset($parentesco))
+<div class="form-group col-sm-6">
+    <label>Parentesco</label>
+    <select class="form-control required" name="parentesco_id" id="user_id">
+        <option value="" >Seleccione una opcion</option>
+        @foreach($parentesco as $us)
 
+        <option value="{{$us->id}}"
+        >{{$us->name}} </option>
+        @endforeach
+    </select>
+</div>
+@endif
+
+@if(isset($escolaridad))
+<div class="form-group col-sm-6">
+    <label>Escolaridad</label>
+    <select class="form-control required" name="institucion_id" id="institucion_id">
+        <option value="" >Seleccione una opcion</option>
+        @foreach($escolaridad as $es)
+
+        <option value="{{$es->id}}"
+        >{{$es->name}} </option>
+        @endforeach
+    </select>
+</div>
+@endif
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
