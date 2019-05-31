@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePersonaInstitucionTable extends Migration
+class CreatePersonaEstadoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreatePersonaInstitucionTable extends Migration
      */
     public function up()
     {
-        Schema::create('persona_institucion', function (Blueprint $table) {
+        Schema::create('persona_estado', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cantidad')->unsigned();
-            $table->integer('institucion_id')->unsigned();
-            $table->foreign('institucion_id')->references('id')->on('institucion');
+            $table->string ('descripcion');
             $table->integer('persona_id')->unsigned();
             $table->foreign('persona_id')->references('id')->on('persona');
+            $table->integer('estado_id')->unsigned();
+            $table->foreign('estado_id')->references('id')->on('estado');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +32,6 @@ class CreatePersonaInstitucionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('persona_institucion');
+        Schema::dropIfExists('persona_estado');
     }
 }
