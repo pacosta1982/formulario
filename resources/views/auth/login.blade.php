@@ -32,7 +32,7 @@
                     max-width:100%;
                     max-height:100%;
                     margin-top: 50px;
-                    margin-bottom: 23px;
+                    margin-bottom: 50px;
                    }    
                    .center{
                        text-align: center;
@@ -87,9 +87,7 @@
 
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">
-            Iniciar sesión</p>
-
+        <p class="login-box-msg">Autenticarse para iniciar la sesión</p>
         <form method="post" action="{{ url('/login') }}">
             {!! csrf_field() !!}
 
@@ -114,26 +112,28 @@
 
             </div>
             <div class="row">
-                <div class="col-xs-8">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox" name="remember"> 
-                            Mantenerme conectado
-                        </label>
+               <div class="col-xs-4">
+                     <div class="checkbox icheck">
+                            <a href="http://localhost:8000/admin/login">
+                            <button class="btn btn-block btn-link">Acceso Admin</button>
+                        </a>
                     </div>
+                </div>
+                <div class="col-xs-4">
+                 <!-- /.col -->
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Registrarse</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Acceder</button>
                 </div>
                 <!-- /.col -->
             </div>
         </form>
 
-        <a href="{{ url('/password/reset') }}">
+       <!--<a href="{{ url('/password/reset') }}">
             Olvidé mi contraseña</a><br>
         <a href="{{ url('/register') }}" class="text-center">
-            Registrar una nueva membresía</a>
+            Registrar una nueva membresía</a>-->
 
     </div>
     <!-- /.login-box-body -->
