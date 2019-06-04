@@ -50,7 +50,8 @@ class Persona extends Model
         'ciudad',
         'barrio',
         'ingreso',
-        'discapacidad'
+        'discapacidad',
+        'ocupacion'
     ];
 
     /**
@@ -86,14 +87,18 @@ class Persona extends Model
         'apellido' => 'required',
         'sexo' => 'required',
         'fecha_nac' => 'required',
-        'email' => 'required',
+        'email' => 'required|unique:persona',
+        //'email' => 'unique',
         'celular' => 'required',
         'domicilio_actual' => 'required',
         'departamento' => 'required',
         'ciudad' => 'required',
         'barrio' => 'required',
         'ingreso' => 'required',
-        'discapacidad' => 'required'
+        'discapacidad' => 'required',
+        'parentesco_id' => 'required',
+        'institucion_id' => 'required',
+        'ocupacion' => 'required',
     ];
 
 

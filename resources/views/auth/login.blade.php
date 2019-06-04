@@ -25,7 +25,7 @@
                     border-color: black;
                 }
                    .imagencentro{
-                       
+
                     margin-left: auto;
                     margin-right: auto;
                     display: block;
@@ -33,16 +33,16 @@
                     max-height:100%;
                     margin-top: 50px;
                     margin-bottom: 50px;
-                   }    
+                   }
                    .center{
                        text-align: center;
                    }
-                
+
                    .total{
                     font-weight: bold;
-                    
+
                 }
-                
+
                 .titulo{
                     margin-top: 20px;
                     text-align: center;
@@ -56,12 +56,12 @@
                     margin-bottom: 5px;
     }
     }
-    
+
                 body {
-                    
+
                     background-color: #a1b3d1;
                 }
-        
+
                 </style>
 </head>
 <body class="body">
@@ -82,7 +82,7 @@
                 </div>
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url('/home') }}">
+
     </div>
 
     <!-- /.login-logo -->

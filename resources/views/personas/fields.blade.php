@@ -87,7 +87,7 @@
 @if(isset($parentesco))
 <div class="form-group col-sm-6">
     <label>Parentesco</label>
-    <select class="form-control required" name="parentesco_id" id="user_id">
+    <select class="form-control required" name="parentesco_id" id="parentesco_id">
         <option value="" >Seleccione una opcion</option>
         @foreach($parentesco as $us)
 
@@ -111,6 +111,11 @@
     </select>
 </div>
 @endif
+<!-- Nombre Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('ocupacion', 'Ocupación:') !!}
+    {!! Form::text('ocupacion', null, ['class' => 'form-control']) !!}
+</div>
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}

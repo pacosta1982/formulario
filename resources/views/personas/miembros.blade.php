@@ -7,7 +7,7 @@
         <th>Sexo</th>
         {{-- <th>Fecha Nac</th>--}}
         <th>Escolaridad</th>
-        <th>Celular</th>
+        <th>Ocupación</th>
         {{-- <th>Domicilio Actual</th>
         <th>Departamento</th>
         <th>Ciudad</th>
@@ -26,26 +26,45 @@
             <td>{!! $persona->persona_id?$persona->persona->sexo:"" !!}</td>
 
           {{--  <td>{!! $persona->fecha_nac !!}</td>--}}
-            <td>{!! $persona->parentesco_id?$persona->parentesco->id:"" !!}</td>
-            <td>{!! $persona->persona_id?$persona->persona->celular:"" !!}</td>
+            <td>{!! $persona->persona_id?$persona->escolaridad->categoriaescolar->name:"" !!}</td>
+            <td>{!! $persona->persona_id?$persona->persona->ocupacion:"" !!}</td>
             {{--<td>{!! $persona->domicilio_actual !!}</td>
             <td>{!! $persona->departamento !!}</td>
             <td>{!! $persona->ciudad !!}</td>
             <td>{!! $persona->barrio !!}</td>
             <td>{!! $persona->ingreso !!}</td>
             <td>{!! $persona->discapacidad !!}</td>--}}
-            <td>
             @if(($persona->parentesco_id?$persona->parentesco->id:"") != 1)
-                {!! Form::open(['route' => ['personas.destroy', $persona->id], 'method' => 'delete']) !!}
-                <div class='btn-group'>
-                    <a href="{!! route('personas.show', [$persona->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('personas.edit', [$persona->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                </div>
-                {!! Form::close() !!}
+                <td class="dt-center">
+                    <div class="dropdown">
+                        <a href="#/" data-toggle="dropdown"><i class="fa fa-fw fa-list-ul"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="{!! action('PersonaController@show', ['id'=>$persona->id]) !!}">Ver</a></li>
+                            <li><a href="{!! action('PersonaController@edit', ['id'=>$persona->id]) !!}">Editar</a></li>
+                            <li><a href="{!! action('PersonaController@destroy', ['id'=>$persona->id]) !!}">Borrar</a></li>
+                        </ul>
+                    </div>
+                </td>
             @endif
             </td>
         </tr>
     @endforeach
     </tbody>
 </table>
+@section('css')
+<style>
+
+    th.dt-center, td.dt-center
+    {
+        text-align: center;
+
+    }
+    td.dt-center i{
+        color: black;
+    }
+
+
+</style>
+
+
+@stop

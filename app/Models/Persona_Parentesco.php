@@ -70,4 +70,10 @@ class Persona_Parentesco extends Model
     {
         return $this->belongsTo(\App\Models\Persona::class, 'persona_id');
     }
+
+
+    public function escolaridad()
+    {
+        return $this->hasOne(\App\Models\Persona_Institucion::class, 'persona_id','persona_id');
+    }
 }

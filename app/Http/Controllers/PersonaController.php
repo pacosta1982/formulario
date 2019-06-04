@@ -13,9 +13,11 @@ use App\Models\Parentesco;
 use App\Models\Persona_Parentesco;
 use App\Models\Persona_Institucion;
 use App\Models\Institucion_Cat;
+use App\Models\Cuestionario;
 use Flash;
 use Auth;
 use Response;
+use GuzzleHttp\Client;
 
 class PersonaController extends AppBaseController
 {
@@ -41,6 +43,49 @@ class PersonaController extends AppBaseController
         //$images = ImageGallery::get();
         return view('personas.index',compact('personas'));
             //->with('personas', $personas);
+    }
+
+    public function storepreguntas(Request $request)
+    {
+
+            $campos = Cuestionario::where('persona_id',$request->id);
+            $data = $request->except('_token','id');
+            //dd($data);
+            if($campos->count() > 0){
+                //echo 'Hay';
+                for ($i=4; $i < 12 ; $i++) {
+
+                    $affectedRows = Cuestionario::where('pregunta_id', '=', $i)
+                    ->where('persona_id', '=' , $request->id)
+                    ->update(array('value' => $data['q'.$i],
+                                   'text_value' => $data['q'.$i.'_text']));
+
+                }
+            }else{
+                for ($i=4; $i < 12 ; $i++) {
+                    $question = new Cuestionario;
+                    $question->pregunta_id = $i;
+                    $question->persona_id = $request->id;
+                    $question->value = $data['q'.$i];
+                    $question->text_value = $data['q'.$i.'_text'];
+                    $question->save();
+                }
+            }
+
+
+            $id = $request->id;
+            $persona = $this->personaRepository->find($id);
+
+            if (empty($persona)) {
+                Flash::error('Persona not found');
+
+                return redirect(route('personas.index'));
+            }
+            Flash::success('Cuestionario Actualizado Correctamente');
+            $images = ImageGallery::get();
+            $personas = Persona_Parentesco::where('postulante_id',$id)->get();
+
+            return view('personas.show',compact('persona','images','personas'));
     }
 
     /**
@@ -126,7 +171,7 @@ class PersonaController extends AppBaseController
             return redirect(route('personas.index'));
         }
         $images = ImageGallery::get();
-        $personas = Persona_Parentesco::all();
+        $personas = Persona_Parentesco::where('postulante_id',$id)->get();
 
         return view('personas.show',compact('persona','images','personas'));//->with('persona', $persona);
     }

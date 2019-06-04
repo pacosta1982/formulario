@@ -13,7 +13,7 @@
         "caouecs/laravel-lang": "~3.0",
         "doctrine/dbal": "~2.3",
         "fideloper/proxy": "^4.0",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "~6.0",
         "infyomlabs/adminlte-templates": "5.8.x-dev",
         "infyomlabs/laravel-generator": "5.8.x-dev",
         "infyomlabs/swagger-generator": "dev-master",
