@@ -30,6 +30,7 @@
                       </div>
             </div>
 </div>
-    
-
+<div class="col-md-12">  
+        <button type="button" class="btn btn-block btn-primary"><strong>Acceder Formulario</strong></button>
+</div>
 @endsection
