@@ -131,9 +131,9 @@
         </form>
 
        <!--<a href="{{ url('/password/reset') }}">
-            Olvidé mi contraseña</a><br>
+            Olvidé mi contraseña</a><br>-->
         <a href="{{ url('/register') }}" class="text-center">
-            Registrar una nueva membresía</a>-->
+            Registrese</a>
 
     </div>
     <!-- /.login-box-body -->
