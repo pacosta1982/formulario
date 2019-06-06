@@ -12,8 +12,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property \App\Models\Parentesco parentesco
  * @property \App\Models\Persona persona
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
+ * @property \Illuminate\Database\Eloquent\Collection
+ * @property \Illuminate\Database\Eloquent\Collection
  * @property integer cantidad
  * @property integer parentesco_id
  * @property integer persona_id
@@ -23,7 +23,7 @@ class Persona_Institucion extends Model
     use SoftDeletes;
 
     public $table = 'persona_institucion';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -60,19 +60,11 @@ class Persona_Institucion extends Model
         'persona_id' => 'required'
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function parentesco()
-    {
-        return $this->belongsTo(\App\Models\Parentesco::class, 'parentesco_id');
+    public function categoriaescolar() {
+        return $this->hasOne('App\Models\Institucion_Cat','id','institucion_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function persona()
-    {
-        return $this->belongsTo(\App\Models\Persona::class, 'persona_id');
-    }
 }

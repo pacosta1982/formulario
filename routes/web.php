@@ -15,6 +15,11 @@ Route::get('/', function () {
 });
 
 
+Route::post('/filtros', 'PersonaController@storepreguntas')->name('storepreguntas');
+
+Route::post('/addpostulante', 'PersonaController@create');
+
+
 //Fotos
 Route::get('image-gallery', 'ImageGalleryController@index');
 Route::post('image-gallery', 'ImageGalleryController@upload');

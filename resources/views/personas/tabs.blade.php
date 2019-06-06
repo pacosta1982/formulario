@@ -11,7 +11,7 @@
           </div>
           <!-- /.tab-pane -->
           <div class="tab-pane" id="tab_2">
-
+            @include('personas.cuestionario')
           </div>
           <!-- /.tab-pane -->
           <div class="tab-pane" id="tab_3">

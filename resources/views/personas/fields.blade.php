@@ -1,41 +1,51 @@
 <!-- Ci Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('ci', 'Ci:') !!}
-    {!! Form::number('ci', null, ['class' => 'form-control']) !!}
+    {!! Form::label('ci', 'Documento:') !!}
+    {!! Form::number('ci', $cedula, ['class' => 'form-control', 'readonly']) !!}
 </div>
 
 <!-- Nombre Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nombre', 'Nombre:') !!}
-    {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
+    {!! Form::text('nombre', $nombre, ['class' => 'form-control', 'readonly']) !!}
 </div>
 
 <!-- Apellido Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('apellido', 'Apellido:') !!}
-    {!! Form::text('apellido', null, ['class' => 'form-control']) !!}
+    {!! Form::text('apellido', $apellido, ['class' => 'form-control', 'readonly']) !!}
 </div>
 
 <!-- Sexo Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('sexo', 'Sexo:') !!}
-    {!! Form::text('sexo', null, ['class' => 'form-control']) !!}
+    {!! Form::label('apellido', 'Sexo:') !!}
+    {!! Form::text('sexo', $sexo, ['class' => 'form-control', 'readonly']) !!}
 </div>
-
 <!-- Fecha Nac Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('fecha_nac', 'Fecha Nac:') !!}
-    {!! Form::text('fecha_nac', null, ['class' => 'form-control','id'=>'fecha_nac']) !!}
+    {!! Form::label('fecha_nac', 'Fecha de Nacimiento:') !!}
+    {!! Form::text('fecha_nac', $fecha, ['class' => 'form-control','id'=>'fecha_nac', 'readonly']) !!}
 </div>
 
 @section('scripts')
     <script type="text/javascript">
         $('#fecha_nac').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
+            format: 'YYYY-MM-DD',
             useCurrent: false
         })
     </script>
 @endsection
+<!-- Nacionalidad -->
+<div class="form-group col-sm-6">
+    {!! Form::label('nac', 'Nacionalidad:') !!}
+    {!! Form::email('nacionalidad', $nac, ['class' => 'form-control', 'readonly']) !!}
+</div>
+
+<!-- Estado Civil -->
+<div class="form-group col-sm-6">
+        {!! Form::label('est', 'Esatdo Civil:') !!}
+        {!! Form::email('est', $est, ['class' => 'form-control', 'readonly']) !!}
+    </div>
 
 <!-- Email Field -->
 <div class="form-group col-sm-6">
@@ -87,7 +97,7 @@
 @if(isset($parentesco))
 <div class="form-group col-sm-6">
     <label>Parentesco</label>
-    <select class="form-control required" name="parentesco_id" id="user_id">
+    <select class="form-control required" name="parentesco_id" id="parentesco_id">
         <option value="" >Seleccione una opcion</option>
         @foreach($parentesco as $us)
 
@@ -102,7 +112,7 @@
 <div class="form-group col-sm-6">
     <label>Escolaridad</label>
     <select class="form-control required" name="institucion_id" id="institucion_id">
-        <option value="" >Seleccione una opcion</option>
+        <option value="" >Seleccione una opción</option>
         @foreach($escolaridad as $es)
 
         <option value="{{$es->id}}"
@@ -111,6 +121,11 @@
     </select>
 </div>
 @endif
+<!-- Nombre Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('ocupacion', 'Ocupación:') !!}
+    {!! Form::text('ocupacion', null, ['class' => 'form-control']) !!}
+</div>
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
