@@ -66,3 +66,8 @@ Route::resource('preguntas', 'PreguntaController');
 Route::resource('institucionCats', 'Institucion_CatController');
 
 Route::resource('personaPres', 'Persona_PreController');
+
+
+Route::resource('entidadesCats', 'Entidades_catController');
+
+Route::resource('entidades', 'EntidadesController');

@@ -56,3 +56,11 @@
     <a href="{!! route('personaPres.index') !!}"><i class="fa fa-edit"></i><span>Persona Pregunta</span></a>
 </li>
 
+<li class="{{ Request::is('entidadesCats*') ? 'active' : '' }}">
+    <a href="{!! route('entidadesCats.index') !!}"><i class="fa fa-edit"></i><span>Entidades Cats</span></a>
+</li>
+
+<li class="{{ Request::is('entidades*') ? 'active' : '' }}">
+    <a href="{!! route('entidades.index') !!}"><i class="fa fa-edit"></i><span>Entidades</span></a>
+</li>
+
