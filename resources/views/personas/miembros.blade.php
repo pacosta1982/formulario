@@ -1,3 +1,4 @@
+<a class="btn btn-primary pull-right announce" data-toggle="modal" style="margin-top: -10px;margin-bottom: 5px" href="">Agregar Nuevo</a>
 <table class="table table-responsive" id="personas-table">
     <thead>
         <tr>

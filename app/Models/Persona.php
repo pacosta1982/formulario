@@ -53,7 +53,9 @@ class Persona extends Model
         'discapacidad',
         'ocupacion',
         'estado_civil',
-        'nacionalidad'
+        'nacionalidad',
+        'embarazo',
+        'gestacion'
     ];
 
     /**

@@ -24,11 +24,24 @@
 
 <div class="form-group col-sm-6" id="embarazo">
     <label>Embarazo</label>
-    <select class="form-control required" name="embarazada" id="embarazada">
+    <select class="form-control required" name="embarazo" id="embarazo">
         <option value="" >Seleccione una opción</option>
-        <option value="t" >Si</option>
-        <option value="f" >No</option>
+        <option value="t"
+        @if($embarazo == 't')
+        selected="selected"
+        @endif
+        >Si</option>
+        <option value="f"
+        @if($embarazo == 'f')
+        selected="selected"
+        @endif
+        >No</option>
     </select>
+</div>
+
+<div class="form-group col-sm-6" id="gestacion">
+    <label>Tiempo de Gestación:</label>
+    <input type="text" name="gestacion" class="form-control"  value="{{isset($gestacion)? $gestacion :null}}">
 </div>
 
 <!-- Fecha Nac Field -->
@@ -47,6 +60,7 @@
         if($("#myTextBox").val() == 'M'){
             //alert('quemestapasando');
             $('#embarazo').attr('hidden', true);
+            $('#gestacion').attr('hidden', true);
             //$('#test1').attr('disabled', true);
         }
         //});
@@ -79,7 +93,7 @@
 <!-- Domicilio Actual Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('domicilio_actual', 'Domicilio Actual:') !!}
-    {!! Form::text('domicilio_actual', null, ['class' => 'form-control']) !!}
+    {!! Form::text('domicilio_actual', isset($domicilio)? $domicilio :null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Departamento Field -->
@@ -109,7 +123,7 @@
 <!-- Barrio Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('barrio', 'Barrio:') !!}
-    {!! Form::text('barrio', null, ['class' => 'form-control']) !!}
+    {!! Form::text('barrio', isset($barrio)? $barrio :null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Ingreso Field -->

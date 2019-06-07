@@ -170,18 +170,89 @@ class PersonaController extends AppBaseController
         $idescol='';
         $iddiscap='';
         $idenfermedad='';
+        $embarazo='';
         return view('personas.create',compact('parentesco','escolaridad','nombre','apellido',
         'cedula','sexo','fecha','nac','est','ciudad','idciudad','idparentesco','idescol','discapacidad',
-        'iddiscap','idenfermedad','enfermedad'));
+        'iddiscap','idenfermedad','enfermedad','embarazo'));
     }
 
 
-    public function createmiembro($id)
+    public function createmiembro(Request $request)
     {
-        $postulante_id=$id;
-        $parentesco = Parentesco::all();
+
+        $headers = [
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json'
+        ];
+
+        $GetOrder = [
+            'username' => 'senavitatconsultas',
+            'password' => 'S3n4vitat'
+        ];
+        $client = new client();
+        $res = $client->post('http://10.1.79.7:8080/mbohape-core/sii/security', [
+            'headers' => $headers,
+            'json' => $GetOrder,
+            'decode_content' => false
+        ]);
+        //var_dump((string) $res->getBody());
+        $contents = $res->getBody()->getContents();
+        $book = json_decode($contents);
+        //echo $book->token;
+        if($book->success == true){
+            //obtener la cedula
+            $headerscedula = [
+                'Authorization' => 'Bearer '.$book->token,
+                'Accept' => 'application/json',
+                'decode_content' => false
+            ];
+            $cedula = $client->get('http://10.1.79.7:8080/frontend-identificaciones/api/persona/obtenerPersonaPorCedula/'.$request->cedula, [
+                'headers' => $headerscedula,
+            ]);
+            $datos=$cedula->getBody()->getContents();
+            $datospersona = json_decode($datos);
+            if(isset($datospersona->obtenerPersonaPorNroCedulaResponse->return->error)){
+                Flash::error($datospersona->obtenerPersonaPorNroCedulaResponse->return->error);
+                return redirect()->back();
+            }else{
+                $nombre = $datospersona->obtenerPersonaPorNroCedulaResponse->return->nombres;
+                $apellido = $datospersona->obtenerPersonaPorNroCedulaResponse->return->apellido;
+                $cedula = $datospersona->obtenerPersonaPorNroCedulaResponse->return->cedula;
+                $sexo = $datospersona->obtenerPersonaPorNroCedulaResponse->return->sexo;
+                $fecha = $datospersona->obtenerPersonaPorNroCedulaResponse->return->fechNacim;
+                $nac = $datospersona->obtenerPersonaPorNroCedulaResponse->return->nacionalidadBean;
+                $est = $datospersona->obtenerPersonaPorNroCedulaResponse->return->estadoCivil;
+            }
+
+            //$nombre = $datos->nombres;
+            //echo $cedula->getBody()->getContents();
+        }else{
+            Flash::success($book->message);
+            return redirect()->back();
+        }
+
+        $postulante_id=$request->postulante;
+        //var_dump($postulante_id);
+        $persona=Persona::find($postulante_id);
+        $domicilio=$persona->domicilio_actual;
+        $barrio=$persona->barrio;
+        $parentesco = Parentesco::where('name','!=','Postulante')->get();
         $escolaridad = Institucion_Cat::all();
-        return view('personas.createmiembro',compact('postulante_id','parentesco','escolaridad'));
+        $embarazo='';
+        $ciudad = Ciudad::where('CiuDptoID',11)
+                        ->where('status', true)
+                        ->get();
+        $idciudad=$persona->ciudad;
+        $idparentesco='';
+        $idescol='';
+        $iddiscap='';
+        $idenfermedad='';
+        $discapacidad = Discapacidad::all();
+        $enfermedad = Enfermedad::all();
+        return view('personas.createmiembro',compact('postulante_id','parentesco',
+        'escolaridad','embarazo','ciudad','idciudad','discapacidad','iddiscap','enfermedad',
+        'idescol','idenfermedad','idparentesco','nombre','apellido','cedula',
+        'sexo','fecha','nac','est','domicilio','barrio'));
     }
 
     /**
@@ -313,10 +384,13 @@ class PersonaController extends AppBaseController
         $iddiscap=$dis->discapacidad_id;
         $enfe = PersonaEnfermedad::where('persona_id',$persona->id)->first();
         $idenfermedad=$enfe->enfermedad_id;
+        $gestacion=$persona->gestacion;
+        $embarazo=$persona->embarazo;
 
 
         return view('personas.edit',compact('persona','ciudad','parentesco',
-        'escolaridad','idciudad','idparentesco','idescol','discapacidad','enfermedad','iddiscap','idenfermedad'));
+        'escolaridad','idciudad','idparentesco','idescol','discapacidad','enfermedad',
+        'iddiscap','idenfermedad','gestacion','embarazo'));
     }
 
     /**

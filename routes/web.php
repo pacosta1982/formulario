@@ -47,7 +47,7 @@ Route::resource('parentescos', 'ParentescoController');
 Route::resource('discapacidads', 'DiscapacidadController');
 
 Route::resource('personas', 'PersonaController');
-Route::get('personas/{id}/create', 'PersonaController@createmiembro');
+Route::get('addmiembro', 'PersonaController@createmiembro');
 Route::post('miembros/', 'PersonaController@storemiembro');
 
 Route::resource('personaDiscapacidads', 'Persona_DiscapacidadController');
