@@ -51,7 +51,9 @@ class Persona extends Model
         'barrio',
         'ingreso',
         'discapacidad',
-        'ocupacion'
+        'ocupacion',
+        'estado_civil',
+        'nacionalidad'
     ];
 
     /**
@@ -67,7 +69,7 @@ class Persona extends Model
         'sexo' => 'string',
         'fecha_nac' => 'date',
         'email' => 'string',
-        'celular' => 'integer',
+        'celular' => 'string',
         'domicilio_actual' => 'string',
         'departamento' => 'string',
         'ciudad' => 'string',
@@ -88,6 +90,26 @@ class Persona extends Model
         'sexo' => 'required',
         'fecha_nac' => 'required',
         'email' => 'required|unique:persona',
+        //'email' => 'unique',
+        'celular' => 'required',
+        'domicilio_actual' => 'required',
+        'departamento' => 'required',
+        'ciudad' => 'required',
+        'barrio' => 'required',
+        'ingreso' => 'required',
+        'discapacidad' => 'required',
+        'parentesco_id' => 'required',
+        'institucion_id' => 'required',
+        'ocupacion' => 'required',
+    ];
+
+    public static $rulesUpdate = [
+        'ci' => 'required',
+        'nombre' => 'required',
+        'apellido' => 'required',
+        'sexo' => 'required',
+        'fecha_nac' => 'required',
+        'email' => 'required',
         //'email' => 'unique',
         'celular' => 'required',
         'domicilio_actual' => 'required',

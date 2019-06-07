@@ -71,3 +71,8 @@ Route::resource('preguntas', 'PreguntaController');
 Route::resource('institucionCats', 'Institucion_CatController');
 
 Route::resource('personaPres', 'Persona_PreController');
+
+
+Route::resource('enfermedads', 'EnfermedadController');
+
+Route::resource('personaEnfermedads', 'PersonaEnfermedadController');

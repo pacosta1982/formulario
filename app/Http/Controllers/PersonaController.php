@@ -14,6 +14,11 @@ use App\Models\Persona_Parentesco;
 use App\Models\Persona_Institucion;
 use App\Models\Institucion_Cat;
 use App\Models\Cuestionario;
+use App\Models\Ciudad;
+use App\Models\Discapacidad;
+use App\Models\Enfermedad;
+use App\Models\Persona_Discapacidad;
+use App\Models\PersonaEnfermedad;
 use Flash;
 use Auth;
 use Response;
@@ -155,7 +160,19 @@ class PersonaController extends AppBaseController
 
         $parentesco = Parentesco::where('name','Postulante')->get();
         $escolaridad = Institucion_Cat::all();
-        return view('personas.create',compact('parentesco','escolaridad','nombre','apellido','cedula','sexo','fecha','nac','est'));
+        $discapacidad = Discapacidad::all();
+        $enfermedad = Enfermedad::all();
+        $ciudad = Ciudad::where('CiuDptoID',11)
+                        ->where('status', true)
+                        ->get();
+        $idciudad='';
+        $idparentesco=1;
+        $idescol='';
+        $iddiscap='';
+        $idenfermedad='';
+        return view('personas.create',compact('parentesco','escolaridad','nombre','apellido',
+        'cedula','sexo','fecha','nac','est','ciudad','idciudad','idparentesco','idescol','discapacidad',
+        'iddiscap','idenfermedad','enfermedad'));
     }
 
 
@@ -182,9 +199,9 @@ class PersonaController extends AppBaseController
 
         $addmiembro = new Persona_Parentesco();
         $addmiembro->cantidad=0;
-        $addmiembro->parentesco_id=$request->parentesco_id;
+        $addmiembro->parentesco_id=1;
         $addmiembro->persona_id=$persona->id;
-        $addmiembro->postulante_id=$id = Auth::user()->id;
+        $addmiembro->postulante_id=Auth::user()->id;
         $addmiembro->save();
 
         $addescolaridad = new Persona_Institucion();
@@ -192,6 +209,16 @@ class PersonaController extends AppBaseController
         $addescolaridad->institucion_id=$request->institucion_id;
         $addescolaridad->persona_id=$persona->id;
         $addescolaridad->save();
+
+        $discapacidad = new Persona_Discapacidad();
+        $discapacidad->discapacidad_id=$request->discapacidad;
+        $discapacidad->persona_id=$persona->id;
+        $discapacidad->save();
+
+        $enfermedad = new PersonaEnfermedad();
+        $enfermedad->enfermedad_id=$request->enfermedad_id;
+        $enfermedad->persona_id=$persona->id;
+        $enfermedad->save();
 
         Flash::success('Postulante Creado Exitosamente...');
 
@@ -244,7 +271,7 @@ class PersonaController extends AppBaseController
             return redirect(route('personas.index'));
         }
         $images = ImageGallery::get();
-        $personas = Persona_Parentesco::where('postulante_id',Auth::user()->id)->get();
+        $personas = Persona_Parentesco::where('postulante_id',$id)->get();
 
         return view('personas.show',compact('persona','images','personas'));//->with('persona', $persona);
     }
@@ -265,8 +292,31 @@ class PersonaController extends AppBaseController
 
             return redirect(route('personas.index'));
         }
+        $parentesco = Parentesco::where('name','Postulante')->get();
+        $escolaridad = Institucion_Cat::all();
+        $editciudad = Ciudad::where('CiuId',$persona->ciudad)->first();
+        $idciudad = $editciudad->CiuId;
+        $editparentesco = Parentesco::where('id',1)->first();
+        //var_dump($editparentesco->id);
+        $idparentesco = $editparentesco->id;
+        $escol = Persona_Institucion::where('persona_id',$persona->id)->first();
+        $idescol=$escol->institucion_id;
+        //$book = json_decode($editciudad);
+        //var_dump($book['CiuId']);
+        //Ciudad::where('CiuId',$persona->ciudad)->get();
+        $ciudad = Ciudad::where('CiuDptoID',11)
+                        ->where('status', true)
+                        ->get();
+        $discapacidad = Discapacidad::all();
+        $enfermedad = Enfermedad::all();
+        $dis = Persona_Discapacidad::where('persona_id',$persona->id)->first();
+        $iddiscap=$dis->discapacidad_id;
+        $enfe = PersonaEnfermedad::where('persona_id',$persona->id)->first();
+        $idenfermedad=$enfe->enfermedad_id;
 
-        return view('personas.edit')->with('persona', $persona);
+
+        return view('personas.edit',compact('persona','ciudad','parentesco',
+        'escolaridad','idciudad','idparentesco','idescol','discapacidad','enfermedad','iddiscap','idenfermedad'));
     }
 
     /**
@@ -280,7 +330,7 @@ class PersonaController extends AppBaseController
     public function update($id, UpdatePersonaRequest $request)
     {
         $persona = $this->personaRepository->find($id);
-
+        var_dump('ejemplo');
         if (empty($persona)) {
             Flash::error('Persona not found');
 
@@ -288,6 +338,9 @@ class PersonaController extends AppBaseController
         }
 
         $persona = $this->personaRepository->update($request->all(), $id);
+        Persona_Institucion::where('persona_id', $id)->update(['institucion_id' => $request->institucion_id]);
+        Persona_Discapacidad::where('persona_id', $id)->update(['discapacidad_id' => $request->discapacidad]);
+        PersonaEnfermedad::where('persona_id', $id)->update(['enfermedad_id' => $request->enfermedad_id]);
 
         Flash::success('Persona updated successfully.');
 

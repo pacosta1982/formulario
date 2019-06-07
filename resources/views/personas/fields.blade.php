@@ -1,30 +1,40 @@
 <!-- Ci Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('ci', 'Documento:') !!}
-    {!! Form::number('ci', $cedula, ['class' => 'form-control', 'readonly']) !!}
+    {!! Form::number('ci', isset($cedula)? $cedula :null, ['class' => 'form-control', 'readonly']) !!}
 </div>
 
 <!-- Nombre Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nombre', 'Nombre:') !!}
-    {!! Form::text('nombre', $nombre, ['class' => 'form-control', 'readonly']) !!}
+    {!! Form::text('nombre', isset($nombre)? $nombre :null, ['class' => 'form-control', 'readonly']) !!}
 </div>
 
 <!-- Apellido Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('apellido', 'Apellido:') !!}
-    {!! Form::text('apellido', $apellido, ['class' => 'form-control', 'readonly']) !!}
+    {!! Form::text('apellido', isset($apellido)? $apellido :null, ['class' => 'form-control', 'readonly']) !!}
 </div>
 
 <!-- Sexo Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('apellido', 'Sexo:') !!}
-    {!! Form::text('sexo', $sexo, ['class' => 'form-control', 'readonly']) !!}
+    {!! Form::text('sexo', isset($sexo)? $sexo :null, ['class' => 'form-control', 'readonly','id' => 'myTextBox']) !!}
 </div>
+
+<div class="form-group col-sm-6" id="embarazo">
+    <label>Embarazo</label>
+    <select class="form-control required" name="embarazada" id="embarazada">
+        <option value="" >Seleccione una opción</option>
+        <option value="t" >Si</option>
+        <option value="f" >No</option>
+    </select>
+</div>
+
 <!-- Fecha Nac Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('fecha_nac', 'Fecha de Nacimiento:') !!}
-    {!! Form::text('fecha_nac', $fecha, ['class' => 'form-control','id'=>'fecha_nac', 'readonly']) !!}
+    {!! Form::text('fecha_nac', isset($fecha)? $fecha :null, ['class' => 'form-control','id'=>'fecha_nac', 'readonly']) !!}
 </div>
 
 @section('scripts')
@@ -33,18 +43,25 @@
             format: 'YYYY-MM-DD',
             useCurrent: false
         })
+
+        if($("#myTextBox").val() == 'M'){
+            //alert('quemestapasando');
+            $('#embarazo').attr('hidden', true);
+            //$('#test1').attr('disabled', true);
+        }
+        //});
     </script>
 @endsection
 <!-- Nacionalidad -->
 <div class="form-group col-sm-6">
     {!! Form::label('nac', 'Nacionalidad:') !!}
-    {!! Form::email('nacionalidad', $nac, ['class' => 'form-control', 'readonly']) !!}
+    {!! Form::text('nacionalidad', isset($nac)? $nac :null, ['class' => 'form-control', 'readonly']) !!}
 </div>
 
 <!-- Estado Civil -->
 <div class="form-group col-sm-6">
         {!! Form::label('est', 'Esatdo Civil:') !!}
-        {!! Form::email('est', $est, ['class' => 'form-control', 'readonly']) !!}
+        {!! Form::text('estado_civil', isset($est)? $est :null, ['class' => 'form-control', 'readonly']) !!}
     </div>
 
 <!-- Email Field -->
@@ -56,7 +73,7 @@
 <!-- Celular Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('celular', 'Celular:') !!}
-    {!! Form::number('celular', null, ['class' => 'form-control']) !!}
+    {!! Form::text('celular', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Domicilio Actual Field -->
@@ -66,15 +83,27 @@
 </div>
 
 <!-- Departamento Field -->
+
 <div class="form-group col-sm-6">
-    {!! Form::label('departamento', 'Departamento:') !!}
-    {!! Form::text('departamento', null, ['class' => 'form-control']) !!}
+    <label>Departamento</label>
+    <select class="form-control required" readonly name="departamento" id="departamento">
+        <option value="11" >Central</option>
+    </select>
 </div>
 
 <!-- Ciudad Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('ciudad', 'Ciudad:') !!}
-    {!! Form::text('ciudad', null, ['class' => 'form-control']) !!}
+    <label>Ciudad</label>
+    <select class="form-control required" name="ciudad" id="ciudad">
+        <option value="" >Seleccione una opcion</option>
+        @foreach($ciudad as $ciu)
+        <option value="{{$ciu->CiuId}}"
+            @if ($idciudad == $ciu->CiuId)
+                selected="selected"
+            @endif
+        >{{$ciu->CiuNom}} </option>
+        @endforeach
+    </select>
 </div>
 
 <!-- Barrio Field -->
@@ -91,10 +120,37 @@
 
 <!-- Discapacidad Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('discapacidad', 'Discapacidad:') !!}
-    {!! Form::text('discapacidad', null, ['class' => 'form-control']) !!}
+    <label>Discapacidad:</label>
+    <select class="form-control required" name="discapacidad" id="discapacidad">
+        <option value="" >Seleccione una opcion</option>
+        @foreach($discapacidad as $us)
+
+        <option value="{{$us->id}}"
+            @if ($iddiscap == $us->id)
+                selected="selected"
+            @endif
+        >{{$us->name}} </option>
+        @endforeach
+    </select>
 </div>
-@if(isset($parentesco))
+
+<div class="form-group col-sm-6">
+    <label>Enfermedad:</label>
+    <select class="form-control required" name="enfermedad_id" id="enfermedad_id">
+        <option value="" >Seleccione una opcion</option>
+        @foreach($enfermedad as $en)
+
+        <option value="{{$en->id}}"
+            @if ($idenfermedad == $en->id)
+                selected="selected"
+            @endif
+        >{{$en->name}} </option>
+        @endforeach
+    </select>
+</div>
+
+
+
 <div class="form-group col-sm-6">
     <label>Parentesco</label>
     <select class="form-control required" name="parentesco_id" id="parentesco_id">
@@ -102,25 +158,29 @@
         @foreach($parentesco as $us)
 
         <option value="{{$us->id}}"
+            @if ($idparentesco == $us->id)
+                selected="selected"
+            @endif
         >{{$us->name}} </option>
         @endforeach
     </select>
 </div>
-@endif
 
-@if(isset($escolaridad))
+
 <div class="form-group col-sm-6">
     <label>Escolaridad</label>
     <select class="form-control required" name="institucion_id" id="institucion_id">
         <option value="" >Seleccione una opción</option>
         @foreach($escolaridad as $es)
-
         <option value="{{$es->id}}"
+            @if ($idescol == $es->id)
+                selected="selected"
+            @endif
         >{{$es->name}} </option>
         @endforeach
     </select>
 </div>
-@endif
+
 <!-- Nombre Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('ocupacion', 'Ocupación:') !!}

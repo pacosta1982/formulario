@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Editar Postulante
+            Enfermedad
         </h1>
    </section>
    <div class="content">
@@ -11,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($persona, ['route' => ['personas.update', $persona->id], 'method' => 'patch']) !!}
+                   {!! Form::model($enfermedad, ['route' => ['enfermedads.update', $enfermedad->id], 'method' => 'patch']) !!}
 
-                        @include('personas.fields')
+                        @include('enfermedads.fields')
 
                    {!! Form::close() !!}
                </div>

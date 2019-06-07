@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Persona;
+use App\Models\PersonaEnfermedad;
 
-class UpdatePersonaRequest extends FormRequest
+class UpdatePersonaEnfermedadRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class UpdatePersonaRequest extends FormRequest
      */
     public function rules()
     {
-        return Persona::$rulesUpdate;
+        return PersonaEnfermedad::$rules;
     }
 }
