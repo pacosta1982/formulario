@@ -1,13 +1,13 @@
 <table class="table table-responsive" id="personas-table">
         <thead>
             <tr>
-            <th>Documento</th>
+            <th>Cedula Id</th>
             <th>Nombre</th>
-            <th>Parentezco</th>
+            <th>Apellido</th>
             <th>Sexo</th>
             {{-- <th>Fecha Nac</th>--}}
-            <th>Escolaridad</th>
-            <th>Ocupación</th>
+            <th>Estado C.</th>
+            <th>Fecha Nac</th>
             {{-- <th>Domicilio Actual</th>
             <th>Departamento</th>
             <th>Ciudad</th>
@@ -20,13 +20,16 @@
         <tbody>
         @foreach($personas as $persona)
             <tr>
-                <td>{!! $persona->persona_id?$persona->persona->ci:"" !!}</td>
-                <td>{!! $persona->persona_id?$persona->persona->nombre:"" !!} {!! $persona->persona_id?$persona->persona->apellido:"" !!}</td>
-                <td>{!! $persona->parentesco_id?$persona->parentesco->name:"" !!}</td>
-                <td>{!! $persona->persona_id?$persona->persona->sexo:"" !!}</td>
+                <td>{!! $persona->ci!!}</td>
+                <td>{!! $persona->nombre!!}</td>
+                <td>{!! $persona->apellido !!}</td>
+                <td>{!! $persona->sexo!!}</td>
+                <td>{!! $persona->estado_civil!!}</td>
+                <td>{!! date("d/m/Y", strtotime($persona->fecha_nac));!!}</td>
+
 
               {{--  <td>{!! $persona->fecha_nac !!}</td>--}}
-                <td>{!! $persona->persona_id?$persona->escolaridad->categoriaescolar->name:"" !!}</td>
+               {{--<td>{!! $persona->persona_id?$persona->escolaridad->categoriaescolar->name:"" !!}</td>
                 <td>{!! $persona->persona_id?$persona->persona->ocupacion:"" !!}</td>
                 {{--<td>{!! $persona->domicilio_actual !!}</td>
                 <td>{!! $persona->departamento !!}</td>

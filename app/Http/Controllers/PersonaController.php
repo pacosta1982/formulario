@@ -19,6 +19,7 @@ use App\Models\Discapacidad;
 use App\Models\Enfermedad;
 use App\Models\Persona_Discapacidad;
 use App\Models\PersonaEnfermedad;
+use App\Models\Estado;
 use Flash;
 use Auth;
 use Response;
@@ -45,13 +46,17 @@ class PersonaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $id = Auth::user()->id;
+        $personas=Persona::all();
+            //$personas = Persona::where('id',$id)->get();
+        return view('personas.index',
+        compact('personas'));
+       // $id = Auth::user()->id;
         //$personas = Persona::where('id',$id)->get();
-        $personas = Persona_Parentesco::where('postulante_id',$id)
-        ->where('parentesco_id',1)
-        ->get();
+        //$personas = Persona_Parentesco::where('postulante_id',$id)
+       // ->where('parentesco_id',1)
+       // ->get();
         //$images = ImageGallery::get();
-        return view('personas.index',compact('personas'));
+        //return view('personas.index',compact('personas'));
             //->with('personas', $personas);
     }
 

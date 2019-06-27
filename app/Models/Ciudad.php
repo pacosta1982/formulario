@@ -19,6 +19,7 @@ class Ciudad extends Model
 
 
     public $table = 'LOCALIDA';
+    
 
 
 

@@ -1,18 +1,18 @@
 
 
-<li class="{{ Request::is('parentescos*') ? 'active' : '' }}">
+<!--<li class="{{ Request::is('parentescos*') ? 'active' : '' }}">
     <a href="{!! route('parentescos.index') !!}"><i class="fa fa-users"></i><span>Parentesco</span></a>
 </li>
 
 <li class="{{ Request::is('discapacidads*') ? 'active' : '' }}">
     <a href="{!! route('discapacidads.index') !!}"><i class="fa  fa-wheelchair"></i><span>Discapacidad</span></a>
-</li>
+</li>-->
 
 <li class="{{ Request::is('personas*') ? 'active' : '' }}">
     <a href="{!! route('personas.index') !!}"><i class="fa fa-user"></i><span>Persona</span></a>
 </li>
 
-<li class="{{ Request::is('personaDiscapacidads*') ? 'active' : '' }}">
+<!--<li class="{{ Request::is('personaDiscapacidads*') ? 'active' : '' }}">
     <a href="{!! route('personaDiscapacidads.index') !!}"><i class="fa fa-wheelchair"></i><span>Persona  Discapacidad</span></a>
 </li>
 
@@ -62,5 +62,5 @@
 
 <li class="{{ Request::is('personaEnfermedads*') ? 'active' : '' }}">
     <a href="{!! route('personaEnfermedads.index') !!}"><i class="fa fa-edit"></i><span>Persona Enfermedads</span></a>
-</li>
+</li>-->
 

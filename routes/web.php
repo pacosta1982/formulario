@@ -28,7 +28,7 @@ Route::delete('image-gallery/{id}', 'ImageGalleryController@destroy');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/project', 'ProjectController@index');
 
 Auth::routes();
 
@@ -76,3 +76,5 @@ Route::resource('personaPres', 'Persona_PreController');
 Route::resource('enfermedads', 'EnfermedadController');
 
 Route::resource('personaEnfermedads', 'PersonaEnfermedadController');
+Route::resource('persona', 'PersonaController');
+

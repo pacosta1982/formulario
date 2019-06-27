@@ -125,5 +125,10 @@ class Persona extends Model
         'ocupacion' => 'required',
     ];
 
+    
+    public function getName()
+    {
+        return $this->hasOne(\App\Models\Ciudad::class, 'CiuId','ciudad');
+    }
 
 }

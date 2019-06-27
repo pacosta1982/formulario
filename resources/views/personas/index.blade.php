@@ -5,7 +5,7 @@
         <h1 class="pull-left">Registro de Inscripción</h1>
         <h1 class="pull-right">
 
-           <a class="btn btn-primary pull-right announce" data-toggle="modal" style="margin-top: -10px;margin-bottom: 5px" href="">Agregar Nuevo</a>
+           <a class="btn btn-primary pull-right announce" data-toggle="modal" style="margin-top: -10px;margin-bottom: 5px"  href="{{ url('/project') }}" class="text-center">Exportar a Excel</a>
         </h1>
     </section>
     <div class="content">
@@ -23,7 +23,7 @@
 
         </div>
     </div>
-    <div class="example-modal" >
+    <!--<div class="example-modal" >
             <div class="modal" id="myModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -47,7 +47,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
 @endsection
 
 @section('scripts')
