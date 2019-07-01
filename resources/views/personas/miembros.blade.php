@@ -24,7 +24,7 @@
     @foreach($members as $link)
         <tr>
             <td>{{ number_format($link->cedula,0,'.','.') }}</td>
-            <td>{{$link->nombre}}</td>
+            <td>{{$link->nombre}} {{$link->apellido}}</td>
             <td>{{$link->parentesco}}</td>
             <td>{{$link->sexo}}</td>
 
