@@ -42,9 +42,8 @@
                         <div class="dropdown">
                             <a href="#/" data-toggle="dropdown"><i class="fa fa-fw fa-list-ul"></i></a>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="{!! action('PersonaController@show', ['id'=>$persona->persona_id?$persona->persona->id:""]) !!}">Ver</a></li>
-                                <li><a href="{!! action('PersonaController@edit', ['id'=>$persona->persona_id?$persona->persona->id:""]) !!}">Editar</a></li>
-                                <li><a href="{!! action('PersonaController@destroy', ['id'=>$persona->persona_id?$persona->persona->id:""]) !!}">Borrar</a></li>
+                                <li><a href="{!! action('PersonaController@show', ['id'=>$persona->id]) !!}">Ver</a></li>
+                                
                             </ul>
                         </div>
                     </td>

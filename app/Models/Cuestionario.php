@@ -27,4 +27,14 @@ class Cuestionario extends Model
         'pregunta_id','persona_id','value','text_value'
     ];
 
+    public function pregunta()
+    {
+        return $this->hasOne(\App\Models\Pregunta::class, 'id','pregunta_id');
+    }
+
+    public function entidad()
+    {
+        return $this->hasOne(\App\Models\Entidades::class, 'id','text_value');
+    }
+
 }

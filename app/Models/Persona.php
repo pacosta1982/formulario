@@ -126,9 +126,14 @@ class Persona extends Model
     ];
 
     
-    public function getName()
+    public function getCity()
     {
         return $this->hasOne(\App\Models\Ciudad::class, 'CiuId','ciudad');
+    }
+
+    public function getDiscapacidad()
+    {
+        return $this->hasOne(\App\Models\Discapacidad::class, 'id','discapacidad');
     }
 
 }

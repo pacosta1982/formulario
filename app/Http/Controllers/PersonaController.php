@@ -339,17 +339,42 @@ class PersonaController extends AppBaseController
      */
     public function show($id)
     {
-        $persona = $this->personaRepository->find($id);
+        $persona = Persona::find($id);
 
         if (empty($persona)) {
             Flash::error('Persona not found');
 
             return redirect(route('personas.index'));
         }
-        $images = ImageGallery::get();
+        $images = ImageGallery::where('title',$persona->ci)->get();
         $personas = Persona_Parentesco::where('postulante_id',$id)->get();
+        
+        $data = json_decode($persona->miembros);
+        
+        if (isset($data)) {
+            $members = $data->miembros;
+        }else{
+            $members = [];
+        }
 
-        return view('personas.show',compact('persona','images','personas'));//->with('persona', $persona);
+        $cuestionario = Cuestionario::where('persona_id',$id)
+        ->orderBy('id', 'asc')
+        ->get();
+        //var_dump($cuestionario);
+
+        //$array = json_decode($json, true);
+//  create a new collection instance from the array
+        //$collection = collect($miembros);
+        //$data = json_decode($persona->miembros,true);
+        //var_dump($members);
+        //$members = $data['miembros'];
+        //var_dump(json_encode($members->nombre));
+        //var_dump($data['miembros']);
+        //$data = $data['miembros']['0'];
+        //dd($data);
+        //$newData = json_decode($data,TRUE);
+
+        return view('personas.show',compact('persona','images','personas','members','cuestionario'));//->with('persona', $persona);
     }
 
     /**

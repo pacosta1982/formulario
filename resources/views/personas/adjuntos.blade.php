@@ -1,4 +1,4 @@
-<form action="{{ url('image-gallery') }}" method="POST" enctype="multipart/form-data">
+<!-- <form action="{{ url('image-gallery') }}" method="POST" enctype="multipart/form-data">
     {!! csrf_field() !!}
     <div class="row">
         <div class="col-md-6">
@@ -24,26 +24,19 @@
     </div>
 
 
-</form>
+</form> -->
 <label for="">Imagenes de la Vivienda X</label>
 <div class="row">
         <div class='list-group gallery'>
                 @if($images->count())
                     @foreach($images as $image)
                     <div class='col-sm-4 col-xs-6 col-md-3 col-lg-3'>
-                        <a class="thumbnail fancybox" rel="ligthbox" href="/images/{{ $image->image }}">
-                            <img class="img-responsive" alt="" src="/images/{{ $image->image }}" />
+                        <a class="thumbnail fancybox" rel="ligthbox" href="/images/{{$image->title}}/{{ $image->image }}">
+                        <img class="img-responsive" alt="" src="/images/{{$image->title}}/{{ $image->image }}" />
                             <div class='text-center'>
                                 <small class='text-muted'>{{ $image->title }}</small>
                             </div> <!-- text-center / end -->
                         </a>
-                        <form action="{{ url('image-gallery',$image->id) }}" method="POST">
-                        <input type="hidden" name="_method" value="delete">
-                        <input type="hidden" name="visita_id" value="">
-                        <input type="hidden" name="vivienda_id" value="">
-                        {!! csrf_field() !!}
-                        <button type="submit" class="close-icon btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
-                        </form>
                     </div> <!-- col-6 / end -->
                     @endforeach
                 @endif
