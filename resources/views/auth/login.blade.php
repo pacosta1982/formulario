@@ -115,7 +115,7 @@
                <div class="col-xs-4">
                      <div class="checkbox icheck">
                             <a href="http://localhost:8000/admin/login">
-                            <button class="btn btn-block btn-link">Acceso Admin</button>
+                            <!--<button class="btn btn-block btn-link">Acceso Admin</button>-->
                         </a>
                     </div>
                 </div>
@@ -132,8 +132,8 @@
 
        <!--<a href="{{ url('/password/reset') }}">
             Olvidé mi contraseña</a><br>-->
-        <a href="{{ url('/register') }}" class="text-center">
-            Registrese</a>
+       <!-- <a href="{{ url('/register') }}" class="text-center">
+            Registrese</a>-->
 
     </div>
     <!-- /.login-box-body -->
