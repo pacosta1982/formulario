@@ -47,7 +47,7 @@
     <div class="col-md-3">
         <div class="form-group">
             {!! Form::label('discapacidad', 'Discapacidad:') !!}
-            <p>{!! $persona->discapacidad !!}</p>
+            <p>{!! $persona->discapacidad?$persona->getDiscapacidad->name:"" !!}</p>
         </div>
     </div>
 </div>
@@ -62,13 +62,13 @@
     <div class="col-md-3">
         <div class="form-group">
             {!! Form::label('departamento', 'Departamento:') !!}
-            <p>{!! $persona->departamento !!}</p>
+            <p>Central</p>
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group">
             {!! Form::label('ciudad', 'Ciudad:') !!}
-            <p>{!! $persona->ciudad !!}</p>
+            <p>{{ $persona->ciudad?$persona->getCity->CiuNom:"" }}</p>
         </div>
     </div>
     <div class="col-md-3">

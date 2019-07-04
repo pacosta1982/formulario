@@ -9,7 +9,7 @@
 </li>-->
 
 <li class="{{ Request::is('personas*') ? 'active' : '' }}">
-    <a href="{!! route('personas.index') !!}"><i class="fa fa-user"></i><span>Persona</span></a>
+    <a href="{!! route('personas.index') !!}"><i class="fa fa-user"></i><span>Listado Pre Inscripción</span></a>
 </li>
 
 <!--<li class="{{ Request::is('personaDiscapacidads*') ? 'active' : '' }}">

@@ -43,7 +43,7 @@ class HistorialExport implements FromQuery, WithHeadings,WithMapping, ShouldAuto
             $invoice->domicilio_actual,
             'Central',
             //$invoice->ciudad,
-            $invoice->ciudad?$invoice->getName->CiuNom:"",
+            $invoice->ciudad?$invoice->getCity->CiuNom:"",
             $invoice->barrio,
             $invoice->estado_civil,
             $invoice->nacionalidad,
