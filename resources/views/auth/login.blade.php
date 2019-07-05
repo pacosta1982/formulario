@@ -133,7 +133,7 @@
        <!--<a href="{{ url('/password/reset') }}">
             Olvidé mi contraseña</a><br>-->
        <!-- <a href="{{ url('/register') }}" class="text-center">
-            Registrese</a>-->
+            Registrese comentado</a>-->
 
     </div>
     <!-- /.login-box-body -->
