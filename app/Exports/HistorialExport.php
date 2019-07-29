@@ -22,11 +22,11 @@ class HistorialExport implements FromQuery, WithHeadings,WithMapping, ShouldAuto
 
     public function query()
     {
-        return Persona::query()
+        return Persona::query();
         //->select('DENroLin','DEFecDis')
         //->where('NroCi',$this->ci)
         //->where('Nombre',$this->nombre)
-        ->orderBy('nombre', 'asc');
+        //->orderBy('nombre', 'asc');
         //->get();
     }
 
@@ -49,6 +49,7 @@ class HistorialExport implements FromQuery, WithHeadings,WithMapping, ShouldAuto
             $invoice->nacionalidad,
             $invoice->ingreso,
             $invoice->celular,
+            date("d/m/Y", strtotime($invoice->created_at)),
             //$invoice->DEUnOrHa?$invoice->deporigen->DepenDes:"",
             //Date::dateTimeToExcel($invoice->created_at),
         ];
@@ -72,6 +73,7 @@ class HistorialExport implements FromQuery, WithHeadings,WithMapping, ShouldAuto
             'Nacionalidad',
             'Ingreso',
             'Celular',
+            'Fecha Creación',
             
         ];
     }
@@ -79,7 +81,7 @@ class HistorialExport implements FromQuery, WithHeadings,WithMapping, ShouldAuto
     {
         return [
             AfterSheet::class    => function(AfterSheet $event) {
-                $cellRange = 'A1:N1'; // All headers
+                $cellRange = 'A1:O1'; // All headers
                 $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(15);
             },
         ];

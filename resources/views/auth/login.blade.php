@@ -78,7 +78,7 @@
                 </div>
             </div>
                 <div class="titulo">
-                        <h2><strong> Sistema de Subsidios AMA</strong></h2>
+                        <h2><strong> Sistema de Control AMA</strong></h2>
                 </div>
 <div class="login-box">
     <div class="login-logo">
